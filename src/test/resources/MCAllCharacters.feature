@@ -20,9 +20,9 @@ Feature: Test de API Personajes Marvel
         And print response         
         Examples:
             | read('classpath:../data/dataCharacterID.csv') |   
-             
+
     @id:4 @CreateCharacter
-    Scenario: T-API-BTFAC-123-CA04- Crear Personaje
+    Scenario Outline: T-API-BTFAC-123-CA04- Crear Personaje
         Given url base_url + 'characters'
         And header Content-Type = 'application/json'
         And def character = read('classpath:../payloads/newCharacter.json')
@@ -30,9 +30,9 @@ Feature: Test de API Personajes Marvel
         When method POST
         Then status 201
         And print response
-        And match response.name == 'SuperMan'
-        Examples:
-            | read('classpath:../data/datacharacter.csv') |
+        And match response.name == 'Batman'
+    Examples:
+            | read('classpath:../data/dataCharacter.csv') |
 
     @id:5 @UpdateCharacter
     Scenario Outline: T-API-BTFAC-123-CA05- Actualizar Personaje
@@ -44,8 +44,8 @@ Feature: Test de API Personajes Marvel
         When method PUT
         Then status 200
         And print response
-        And match response.name == 'Batman'
-        Examples:
+        And match response.name == 'Van'
+    Examples:
             | read('classpath:../dataCharacterID.csv') |
   
  
