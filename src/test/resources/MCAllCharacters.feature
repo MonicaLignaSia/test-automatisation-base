@@ -7,7 +7,7 @@ Feature: Test de API Personajes Marvel
 
     @id:1 @getAllCharactersMarvel
     Scenario: T-API-BTFAC-123-CA01- Obtener Todos los Personajes Marvel
-        Given url base_url + '/characters'
+        Given url base_url + 'characters'
         When method GET
         Then status 200
         And print response
@@ -20,3 +20,12 @@ Feature: Test de API Personajes Marvel
         And print response         
         Examples:
             | read('classpath:../data/dataCharacterID.csv') |    
+    
+     @id:3 @GetCharacterNotExists
+    Scenario Outline: T-API-BTFAC-123-CA03- Obtener Personaje No Existente
+        Given url base_url + '/characters/' + idCharacter
+        When method GET
+        Then status 404
+        And print response        
+        Examples:
+            | read('classpath:../data/dataCharacterID.csv') |
